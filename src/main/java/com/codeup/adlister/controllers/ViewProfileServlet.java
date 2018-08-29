@@ -1,6 +1,8 @@
 package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
+import com.codeup.adlister.dao.MySQLAdsDao;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,12 +15,16 @@ public class ViewProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
-
             return;
-
         }
-//        request.setAttribute("delete-ad", DaoFactory.getAdsDao().());
+
         request.setAttribute("ads", DaoFactory.getAdsDao().all());
         request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
     }
-}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            long ad = Long.parseLong(request.getParameter("ad"));
+            DaoFactory.getAdsDao().deleteAd(ad);
+            response.sendRedirect("/profile");
+        }
+
+    }
