@@ -44,3 +44,5 @@ CREATE TABLE pads_categories (
   FOREIGN KEY (category_id) REFERENCES categories (id)
     ON DELETE CASCADE
 );
+
+SELECT * FROM ads;
