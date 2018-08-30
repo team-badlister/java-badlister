@@ -6,13 +6,15 @@ public class Ad {
     private String title;
     private String location;
     private String description;
+    private String createdBy;
 
-    public Ad(long id, long userId, String title,String location, String description) {
+    public Ad(long id, long userId, String title,String location, String description, String createdBy) {
         this.id = id;
         this.userId = userId;
         this.title = title;
         this.location = location;
         this.description = description;
+        this.createdBy = createdBy;
     }
 
     public Ad(long userId, String title, String location, String description) {
@@ -60,5 +62,13 @@ public class Ad {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 }

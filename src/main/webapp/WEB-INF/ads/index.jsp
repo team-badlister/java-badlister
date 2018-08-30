@@ -3,11 +3,11 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Viewing All The Ads" />
+        <jsp:param name="title" value="Viewing All The Ads"/>
     </jsp:include>
 </head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp" />
+<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 
 <div class="container">
     <h1>Here Are all the ads!</h1>
@@ -17,6 +17,8 @@
             <h2>${ad.title}</h2>
             <h3>${ad.location}</h3>
             <p>${ad.description}</p>
+            <hr>
+            <p> Created by ${ad.createdBy} </p>
         </div>
     </c:forEach>
 </div>

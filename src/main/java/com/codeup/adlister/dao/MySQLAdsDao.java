@@ -14,16 +14,16 @@ public class MySQLAdsDao implements Ads {
         try {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
-                config.getUrl(),
-                config.getUsername(),
-                config.getPassword()
+                    config.getUrl(),
+                    config.getUsername(),
+                    config.getPassword()
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
         }
     }
 
-    public void deleteAd(long id){
+    public void deleteAd(long id) {
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement("DELETE FROM ads WHERE id = ?");
@@ -38,8 +38,8 @@ public class MySQLAdsDao implements Ads {
     @Override
     public List<Ad> all() {
         PreparedStatement stmt = null;
-        try {
-            stmt = connection.prepareStatement("SELECT * FROM ads");
+        try { // SQUEQUEL WRITTEN BY DEWIEDAJAVAGOD
+            stmt = connection.prepareStatement("SELECT a.id, a.user_id, a.title, a.location, a.description, u.username FROM ads AS a LEFT JOIN users AS u ON a.user_id = u.id;");
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
@@ -67,14 +67,14 @@ public class MySQLAdsDao implements Ads {
 
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
-            rs.getLong("id"),
-            rs.getLong("user_id"),
-            rs.getString("title"),
-            rs.getString("location"),
-            rs.getString("description")
+                rs.getLong("id"),
+                rs.getLong("user_id"),
+                rs.getString("title"),
+                rs.getString("location"),
+                rs.getString("description"),
+                rs.getString("username")
         );
     }
-
 
 
     private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
