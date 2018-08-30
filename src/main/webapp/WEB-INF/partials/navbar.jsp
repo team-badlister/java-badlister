@@ -4,7 +4,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="/ads">Pad Lister</a>
         </div>
-        <ul class="nav navbar-nav navbar-right">
+        <ul id="navbar" class="nav navbar-nav navbar-right">
             <li><a href="ads/create">Create</a></li>
             <li><a href="/register">Register</a></li>
             <li><a href="/login">Login</a></li>
