@@ -24,19 +24,6 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
-    public List<User> all() {
-        PreparedStatement stmt = null;
-        try {
-            stmt = connection.prepareStatement("SELECT * FROM users");
-            ResultSet rs = stmt.executeQuery();
-            return createUsersFromResults(rs);
-        } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving all users.", e);
-        }
-    }
-
-
-    @Override
     public User findByUsername(String username) {
         User user = null;
         String query = "SELECT * FROM users WHERE username = ? LIMIT 1";
@@ -80,17 +67,4 @@ public class MySQLUsersDao implements Users {
                 rs.getString("password")
         );
     }
-
-    private List<User> createUsersFromResults(ResultSet rs) throws SQLException {
-        List<User> users = new ArrayList<>();
-        while (rs.next()) {
-            users.add(extractUser(rs));
-        }
-        for (User user : users) {
-            System.out.println(user.getUsername());
-        }
-        return users;
-    }
-
-
 }

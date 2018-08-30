@@ -3,26 +3,22 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Viewing All The Ads" />
+        <jsp:param name="title" value="Viewing All The Ads"/>
     </jsp:include>
 </head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp" />
+<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 
 <div class="container">
     <h1>Here Are all the ads!</h1>
 
-    <c:forEach var="ad"  items="${ads}">
+    <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
             <h2>${ad.title}</h2>
             <h3>${ad.location}</h3>
             <p>${ad.description}</p>
             <hr>
-                <c:forEach var="user" items="${users}">
-                    <%--<c:if test="${user.id == ad.userId}">--%>
-                        <p> Created by ${user.username} </p>
-                    <%--</c:if>--%>
-                </c:forEach>
+            <p> Created by ${ad.createdBy} </p>
         </div>
     </c:forEach>
 </div>
