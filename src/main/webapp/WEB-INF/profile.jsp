@@ -18,9 +18,9 @@
             <h2>${ad.title}</h2>
             <h3>${ad.location}</h3>
             <p>${ad.description}</p>
-            <form action="delete" method="DELETE">
-                <input type="submit" name="Delete" value="deleteAd" />
-                <input type="hidden" name="ad" value="deleteAd" />
+            <form action="/profile" method="POST">
+                <input type="hidden" name="ad" value="${ad.id}" />
+                <input type="submit" name="delete" value="Delete" />
             </form>
         </div>
     </c:if>

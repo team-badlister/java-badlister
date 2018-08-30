@@ -23,12 +23,13 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-    public List<Ad> deleteAd(){
+    public void deleteAd(long id){
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement("DELETE FROM ads WHERE id = ?");
-            ResultSet rs = stmt.executeQuery();
-            return  createAdsFromResults(rs);
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+
         } catch (SQLException e) {
             throw new RuntimeException("Error deleting pad", e);
         }
