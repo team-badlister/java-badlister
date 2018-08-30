@@ -21,7 +21,26 @@
                 <label for="description">Description</label>
                 <textarea id="description" name="description" class="form-control" type="text"></textarea>
             </div>
-            <input type="submit" class="btn btn-block btn-primary">
+
+            <div class="form-group">
+                <label>Category</label><br>
+                <input type="checkbox" name="smallPad" value="Small Pad">Small Pad<br>
+                <input type="checkbox" name="largePad" value="Large Pad">Large Pad<br>
+                <input type="checkbox" name="unusualPad" value="Unusual">Unusual<br>
+                <input type="checkbox" name="greenPad" value="Green(Eco)">Green(Eco)<br>
+                <input type="checkbox" name="hauntedPad" value="Haunted">Haunted<br>
+                <input type="checkbox" name="wheelsPad" value="On-Wheels">On-Wheels<br>
+                <input type="checkbox" name="waterPad" value="On-Water" checked>On-Water<br><br>
+            </div>
+
+            <div>
+                <label for="padImage">Pad Image</label>
+                <form id="padImage" action="/ads/create" method="post" enctype="multipart/form-data">
+                    <input type="file" name="padImage">
+                </form>
+            </div>
+
+            <input type="submit" class="btn btn-block btn-primary" value="Upload">
         </form>
     </div>
 </body>
