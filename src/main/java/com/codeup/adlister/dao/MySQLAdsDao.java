@@ -40,10 +40,10 @@ public class MySQLAdsDao implements Ads {
         PreparedStatement stmt = null;
         try { // SQUEQUEL WRITTEN BY DEWIEDAJAVAGOD
             stmt = connection.prepareStatement("SELECT a.id, a.user_id, a.title, a.location, a.description, u.username " +
-                                                    "FROM ads " +
-                                                    "AS a " +
-                                                    "LEFT JOIN users " +
-                                                    "AS u ON a.user_id = u.id;");
+                    "FROM ads " +
+                    "AS a " +
+                    "LEFT JOIN users " +
+                    "AS u ON a.user_id = u.id;");
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
@@ -80,6 +80,23 @@ public class MySQLAdsDao implements Ads {
         );
     }
 
+    @Override
+    public void updateAd(String title, String location, String description, long id) {
+
+        String updateQuery = "UPDATE ads SET title = ?, location = ?,  description = ? where id = ?";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(updateQuery);
+            stmt.setString(1, title);
+            stmt.setString(2, location);
+            stmt.setString(3, description);
+            stmt.setLong(4, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
         List<Ad> ads = new ArrayList<>();

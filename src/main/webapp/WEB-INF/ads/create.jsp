@@ -33,13 +33,6 @@
                 <input type="checkbox" name="waterPad" value="On-Water" checked>On-Water<br><br>
             </div>
 
-            <div>
-                <label for="padImage">Pad Image</label>
-                <form id="padImage" action="/ads/create" method="post" enctype="multipart/form-data">
-                    <input type="file" name="padImage">
-                </form>
-            </div>
-
             <input type="submit" class="btn btn-block btn-primary" value="Upload">
         </form>
     </div>
