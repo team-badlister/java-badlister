@@ -39,7 +39,11 @@ public class MySQLAdsDao implements Ads {
     public List<Ad> all() {
         PreparedStatement stmt = null;
         try { // SQUEQUEL WRITTEN BY DEWIEDAJAVAGOD
-            stmt = connection.prepareStatement("SELECT a.id, a.user_id, a.title, a.location, a.description, u.username FROM ads AS a LEFT JOIN users AS u ON a.user_id = u.id;");
+            stmt = connection.prepareStatement("SELECT a.id, a.user_id, a.title, a.location, a.description, u.username " +
+                                                    "FROM ads " +
+                                                    "AS a " +
+                                                    "LEFT JOIN users " +
+                                                    "AS u ON a.user_id = u.id;");
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
