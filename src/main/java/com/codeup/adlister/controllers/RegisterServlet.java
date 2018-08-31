@@ -1,7 +1,9 @@
 package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
+import com.codeup.adlister.dao.Users;
 import com.codeup.adlister.models.User;
+import com.sun.xml.internal.fastinfoset.util.StringArray;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
@@ -16,19 +19,30 @@ public class RegisterServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
     }
 
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
+//        List<User> usersList = DaoFactory.getUsersDao().all();
+
 
 
 
         // validate input
+        
         boolean inputHasErrors = username.isEmpty()
             || email.isEmpty()
             || password.isEmpty()
-            || (! password.equals(passwordConfirmation));
+            || (! password.equals(passwordConfirmation))
+            || username == null;
+
+//        for (int i = 0; i < usersList.size(); i++){
+//            if(username.equals(usersList.get(i).toString())){
+//                inputHasErrors = true;
+//            }
+//        }
 
         if (inputHasErrors) {
             response.sendRedirect("/register");

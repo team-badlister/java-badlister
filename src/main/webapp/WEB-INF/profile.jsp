@@ -13,7 +13,7 @@
         <h1>Welcome, ${sessionScope.user.username}!</h1>
     </div>
     <c:forEach var="ad" items="${ads}">
-        <c:if test="${ad.userId == sessionScope.user.id}">
+        <c:if test="${ad.userId == sessionScope.user.id && ad != null}">
         <div class="col-md-6">
             <h2>${ad.title}</h2>
             <h3>${ad.location}</h3>
