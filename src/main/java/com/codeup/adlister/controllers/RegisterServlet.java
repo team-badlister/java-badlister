@@ -3,7 +3,6 @@ package com.codeup.adlister.controllers;
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.dao.Users;
 import com.codeup.adlister.models.User;
-import com.sun.xml.internal.fastinfoset.util.StringArray;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,14 +34,8 @@ public class RegisterServlet extends HttpServlet {
         boolean inputHasErrors = username.isEmpty()
             || email.isEmpty()
             || password.isEmpty()
-            || (! password.equals(passwordConfirmation))
-            || username == null;
+            || (! password.equals(passwordConfirmation));
 
-//        for (int i = 0; i < usersList.size(); i++){
-//            if(username.equals(usersList.get(i).toString())){
-//                inputHasErrors = true;
-//            }
-//        }
 
         if (inputHasErrors) {
             response.sendRedirect("/register");
