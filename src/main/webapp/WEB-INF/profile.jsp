@@ -25,6 +25,5 @@
         </div>
     </c:if>
     </c:forEach>
-
 </body>
 </html>
